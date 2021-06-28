@@ -7,6 +7,10 @@
 <h2>@Model.Restaurant.Name</h2>
 
 <div class="container-fluid">
+    @if(Model.Message!=null)
+     {
+        <div class="alert alert-info">@Model.Message</div>
+     }
     <dl class="row">
         <dt class="col-sm-3">Id</dt>
         <dd class="col-sm-9">@Model.Restaurant.Id</dd>
@@ -16,9 +20,6 @@
 
         <dt class="col-sm-3">Cuisine</dt>
         <dd class="col-sm-9">@Model.Restaurant.Cuisine</dd>
-
-        <dt class="col-sm-3">Description</dt>
-        <dd class="col-sm-9">@Model.Restaurant.Description</dd>
     </dl>
 </div>
 

@@ -12,10 +12,15 @@ namespace OdeToFood.Data
         {
             restaurants = new List<Restaurant>()
             {
-                new Restaurant{Id=1, Name="Domino's Pizza", Description="A restaurant (sometimes known as a diner) is a place where cooked food is sold to the public, and where people sit down to eat it. It is also a place where people go to enjoy the time and to eat a meal.", Location="Delhi", Cuisine=CuisineType.Italian},
-                new Restaurant{Id=2, Name="Persiaon Darbar", Description="A restaurant (sometimes known as a diner) is a place where cooked food is sold to the public, and where people sit down to eat it. It is also a place where people go to enjoy the time and to eat a meal.", Location="Mumbai", Cuisine=CuisineType.Indian},
-                new Restaurant{Id=3, Name="Food Inn", Description="A restaurant (sometimes known as a diner) is a place where cooked food is sold to the public, and where people sit down to eat it. It is also a place where people go to enjoy the time and to eat a meal.", Location="Bhiwandi", Cuisine=CuisineType.Mexican}
+                new Restaurant{Id=1, Name="Domino's Pizza", Location="Delhi", Cuisine=CuisineType.Italian},
+                new Restaurant{Id=2, Name="Persiaon Darbar", Location="Mumbai", Cuisine=CuisineType.Indian},
+                new Restaurant{Id=3, Name="Food Inn", Location="Bhiwandi", Cuisine=CuisineType.Mexican}
             };
+        }
+
+        public int Commit()
+        {
+            return 0;
         }
 
         public Restaurant GetById(int id)
@@ -29,6 +34,27 @@ namespace OdeToFood.Data
                    where string.IsNullOrEmpty(name) || r.Name.StartsWith(name)
                    orderby r.Name
                    select r;
+        }
+
+        public Restaurant Add(Restaurant newRestaurant)
+        {
+            restaurants.Add(newRestaurant);
+            newRestaurant.Id = restaurants.Max(r => r.Id) + 1;
+            return newRestaurant;
+        }
+
+        public Restaurant Update(Restaurant updatedRestaurant)
+        {
+            var restaurant = restaurants.SingleOrDefault(r => r.Id == updatedRestaurant.Id);
+
+            if(restaurant!=null)
+            {
+                restaurant.Name = updatedRestaurant.Name;
+                restaurant.Location = updatedRestaurant.Location;
+                restaurant.Cuisine = updatedRestaurant.Cuisine;
+            }
+
+            return restaurant;
         }
     }
 }
