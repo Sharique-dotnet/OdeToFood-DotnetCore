@@ -66,5 +66,10 @@ namespace OdeToFood.Data
             }
             return restaurant;
         }
+
+        public int GeCountOfRestaurants()
+        {
+            return restaurants.Count();
+        }
     }
 }

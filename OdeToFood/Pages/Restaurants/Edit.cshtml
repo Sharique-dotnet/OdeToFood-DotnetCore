@@ -1,6 +1,7 @@
 ﻿@page "{restaurantId:int?}"
 @model OdeToFood.Pages.Restaurants.EditModel
 @{
+    ViewData["Title"] = "Edit";
 }
 
 <h2>Editing @Model.Restaurant.Name</h2>
@@ -23,6 +24,9 @@
         <span class="text-danger" asp-validation-for="Restaurant.Cuisine"></span>
     </div>
    
-    <button type="submit" class="btn btn-outline-primary mt-3">Save</button>
-    
+    <div class="form-group">
+            <button type="submit" class="btn btn-outline-primary mt-3">Save</button>
+            <a class="btn btn-outline-primary mt-3" asp-page="./List">Back to list</a>
+    </div>
+
 </form>

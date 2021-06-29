@@ -55,5 +55,10 @@ namespace OdeToFood.Data
         {
             return db.SaveChanges();
         }
+
+        public int GeCountOfRestaurants()
+        {
+            return db.Restaurants.Count();
+        }
     }
 }
